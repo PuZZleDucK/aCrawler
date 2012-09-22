@@ -3,6 +3,9 @@
  */
 package com.puzzleduck.crawler;
 
+import java.util.Collection;
+import java.util.HashSet;
+
 /**
  * @author puzzleduck
  *
@@ -12,6 +15,9 @@ public class AppData {
 	  private String appName;
 	  private String appUrl;
 	  private String appDescription;
+	  private Collection<AppData> linksToApp;
+	  private Collection<AppData> linksFromApp; 
+	  
 
 	
 	
@@ -22,12 +28,25 @@ public class AppData {
 	public AppData() {
 	    appName = "";
 	    appUrl = "";
+	    linksToApp = new HashSet<AppData>();
+	    linksFromApp = new HashSet<AppData>();
 	}
 
 	  public AppData(String newName, String newUrl)
 	  {
 	    appName = newName;
 	    appUrl = newUrl;
+	    linksToApp = new HashSet<AppData>();
+	    linksFromApp = new HashSet<AppData>();
+	  }
+	  
+
+	  public AppData(String newName, String newUrl, Collection<AppData> linksTo, Collection<AppData> linksFrom)
+	  {
+	    appName = newName;
+	    appUrl = newUrl;
+	    linksToApp = linksTo;
+	    linksFromApp = linksFrom;
 	  }
 
 
