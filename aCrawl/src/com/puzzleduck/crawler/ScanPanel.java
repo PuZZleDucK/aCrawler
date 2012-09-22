@@ -22,8 +22,10 @@ public class ScanPanel extends JPanel {
 	  public void paintComponent(Graphics g)
 	  {
 	    super.paintComponent(g);  
-	    g.setColor(Color.red);  
-	    g.fillRect(0, 0 , 10, 10);  
+	    g.setColor(Color.white);  
+	    g.fillRect(0, 0 , g.getClipBounds(getVisibleRect()).width, g.getClipBounds(getVisibleRect()).height);
+	    
+	    
 	    g.setColor(Color.blue);  
 	    drawX = 10;
 	    
@@ -31,7 +33,7 @@ public class ScanPanel extends JPanel {
 	    while( i.hasNext() )
 	    {
 	      AppData o = (AppData) i.next(); 
-	      g.fillRect(drawX, drawY, drawX+5, drawY+5);
+	      g.fillRect(drawX, drawY, 5, 5);
 	      g.drawString(o.getAppUrl(), drawX, drawY);
 	      drawX += 15;
 	      if( drawX >= 200 )
