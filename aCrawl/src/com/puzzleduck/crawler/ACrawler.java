@@ -58,7 +58,7 @@ public class ACrawler {
 	/**
 	 *     Initialize db or linked list
 	 */
-	private static void initDB() {
+	protected static void initDB() {
 		// just clearing hashset for now
 		appHashSet.clear();
 		
@@ -151,7 +151,7 @@ public class ACrawler {
 		// TODO Init start exec
 	    startButton.addActionListener(new ACrawlStarter());
 	    		//stop exec
-//	    stopButton.addActionListener();//TODO 
+	    stopButton.addActionListener(new ACrawlStopper());//TODO 
 
 		
 	}

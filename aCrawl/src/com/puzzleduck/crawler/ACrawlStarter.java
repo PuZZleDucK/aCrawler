@@ -19,10 +19,23 @@ public class ACrawlStarter implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 
+//		arg0.getID();
 		// TODO optional execuitor and fork/join count config
 		 //   jCrawler.executorService = Executors.newFixedThreadPool(6);
-		ACrawler.forkPool = new ForkJoinPool(4);
-		System.out.println( "Crawl Parallelism: " + ACrawler.forkPool.getParallelism());
+
+		System.out.println( "exist: " + (ACrawler.forkPool == null));
+		
+		if(ACrawler.forkPool == null)
+		{
+			ACrawler.forkPool = new ForkJoinPool(4);
+			
+		}else{
+			ACrawler.forkPool = null;
+			ACrawler.initDB();
+			ACrawler.forkPool = new ForkJoinPool(4);
+		}
+		
+//		System.out.println( "Crawl Parallelism: " + ACrawler.forkPool.getParallelism());
 		String startUrl = (String) ACrawler.startingAddressComboBox.getSelectedItem();
 		
 	    try

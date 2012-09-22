@@ -28,7 +28,7 @@ public class ScanPanel extends JPanel {
 	    
 	    g.setColor(Color.blue);  
 	    drawX = 10;
-	    
+	    drawY = 10;
 	    Iterator i = ACrawler.appHashSet.iterator();
 	    while( i.hasNext() )
 	    {

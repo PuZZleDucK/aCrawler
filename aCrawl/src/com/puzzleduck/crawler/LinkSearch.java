@@ -93,10 +93,10 @@ public class LinkSearch extends RecursiveAction {
 	        	ACrawler.appHashSet.add(urlAsApp);
     		//	ACrawler.doneLinkList.add(new JLabel(urlAsApp.getAppUrl()));
 	        	
+	    	    ACrawler.scanPanel.repaint();
 
 //	    	    ACrawler.scanPanel.updateUI();
 //	    	    ACrawler.scanPanel.setVisible(true);
-	    	    ACrawler.scanPanel.repaint();
 //	    	    ACrawler.scanPanel.validate();
 
 	        	
