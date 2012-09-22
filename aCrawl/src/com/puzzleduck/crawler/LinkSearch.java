@@ -79,7 +79,8 @@ public class LinkSearch extends RecursiveAction {
 	                		if(newAppData.getAppUrl().startsWith("https://play.google.com/store"))//need to change back later:    (String) ACrawler.startingAddressComboBox.getSelectedItem()
 	                		{
 	        	        	    System.out.print("K:...\n");
-	                			actions.add(new LinkSearch(newAppData.getAppUrl()));
+//	                			actions.add(new LinkSearch(newAppData.getAppUrl()));//submit now instead
+	        	        	    ACrawler.forkPool.submit(new LinkSearch(newAppData.getAppUrl()));
 	                			//ACrawler.todoLinkList.add(new JLabel(newAppData.getAppUrl()));
 	                		}
 
@@ -92,12 +93,17 @@ public class LinkSearch extends RecursiveAction {
 	        	ACrawler.appHashSet.add(urlAsApp);
     		//	ACrawler.doneLinkList.add(new JLabel(urlAsApp.getAppUrl()));
 	        	
-	        	
-	        	
+
+//	    	    ACrawler.scanPanel.updateUI();
+//	    	    ACrawler.scanPanel.setVisible(true);
+	    	    ACrawler.scanPanel.repaint();
+//	    	    ACrawler.scanPanel.validate();
+
 	        	
 	        	//fork/exec children
-	        	invokeAll(actions);
 	        	
+//	        	invokeAll(actions);
+	        	//submit eirlier now
 	        }
 			
         

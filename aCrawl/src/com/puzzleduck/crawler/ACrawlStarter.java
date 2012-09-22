@@ -22,7 +22,7 @@ public class ACrawlStarter implements ActionListener {
 		// TODO optional execuitor and fork/join count config
 		 //   jCrawler.executorService = Executors.newFixedThreadPool(6);
 		ACrawler.forkPool = new ForkJoinPool(4);
-
+		System.out.println( "Crawl Parallelism: " + ACrawler.forkPool.getParallelism());
 		String startUrl = (String) ACrawler.startingAddressComboBox.getSelectedItem();
 		
 	    try

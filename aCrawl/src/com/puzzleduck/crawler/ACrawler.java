@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ListModel;
+import javax.swing.UIManager;
 
 /**
  * @author PuZZleDucK
@@ -33,8 +34,12 @@ public class ACrawler {
 	
 	protected static JComboBox<String> startingAddressComboBox;
 
-	protected static JTextArea todoLinkList;
-	protected static JTextArea doneLinkList;
+	protected static JFrame mainWindow;
+	
+	protected static ScanPanel scanPanel;
+	
+//	protected static JTextArea todoLinkList;
+//	protected static JTextArea doneLinkList;
 	
 	/**
 	 * @param args 
@@ -65,9 +70,18 @@ public class ACrawler {
 	 */
 	private static void initUI(String[] args) 
 	{
+
+		//init l&f
+		try {
+			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");// or "com.sun.java.swing.plaf.gtk.GTKLookAndFeel" or "com.sun.java.swing.plaf.motif.MotifLookAndFeel" or "com.sun.java.swing.plaf.windows.WindowsLookAndFeel"   
+		} catch (Exception e) {
+			e.printStackTrace();// doing nothing... auto fallback to system default
+		}
+		
 		//main frame
-	    JFrame mainWindow = new JFrame();
-	    int windowHeight = 600;
+	    mainWindow = new JFrame();
+	    mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		int windowHeight = 600;
 	    int windowWidth = 400;
 	    mainWindow.setBounds(0, 0, windowWidth, windowHeight);
 
@@ -81,6 +95,9 @@ public class ACrawler {
 	    mainWindow.setTitle("Scan Window");
 		
 
+	    scanPanel = new ScanPanel();
+	    mainPanel.add(scanPanel);
+	    
 	    startingAddressComboBox = new JComboBox<String>();
 //		if(args[0] == null)
 //		{
