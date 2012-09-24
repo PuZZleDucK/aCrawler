@@ -17,8 +17,10 @@ public class AppData {
 	  private String appDescription;
 	  private Collection<AppData> linksToApp;
 	  private Collection<AppData> linksFromApp; 
-	  
-
+	  private int sizeX = 0; 
+	  private int sizeY = 0;
+	  private int drawX = 10; 
+	  private int drawY = 10;
 	
 	
 
@@ -84,10 +86,16 @@ public class AppData {
 		this.appDescription = appDescription;
 	}
 
+	public void addLinksToApp(Collection<AppData> newLinks)
+	{
+		linksToApp.addAll(newLinks);
+	}
 	
-	
-	
-	
+	public void addLinksFromApp(Collection<AppData> newLinks)
+	{
+		linksFromApp.addAll(newLinks);
+	}
+		
 	
 	
 	
@@ -128,6 +136,38 @@ public class AppData {
 		} else if (!appUrl.equals(other.appUrl))
 			return false;
 		return true;
+	}
+
+	public int getDrawX() {
+		return drawX;
+	}
+
+	public void setDrawX(int drawX) {
+		this.drawX = drawX;
+	}
+
+	public int getDrawY() {
+		return drawY;
+	}
+
+	public void setDrawY(int drawY) {
+		this.drawY = drawY;
+	}
+
+	public int getSizeX() {
+		return sizeX;
+	}
+
+	public void setSizeX(int sizeX) {
+		this.sizeX = sizeX;
+	}
+
+	public int getSizeY() {
+		return sizeY;
+	}
+
+	public void setSizeY(int sizeY) {
+		this.sizeY = sizeY;
 	}
 
 	
