@@ -7,6 +7,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author puzzleduck
@@ -17,8 +19,8 @@ public class AppData {
 	  private String appName;
 	  private String appUrl;
 	  private String appDescription;
-	  private Collection<AppData> linksToApp;
-	  private Collection<AppData> linksFromApp; 
+	  private LinkedList<AppData> linksToApp;
+	  private LinkedList<AppData> linksFromApp; 
 	  private double sizeX = 0; 
 	  private double sizeY = 0;
 	  private int drawX = 10; 
@@ -34,9 +36,9 @@ public class AppData {
 	 */
 	public AppData() {
 	    appName = "";
-	    appUrl = "";
-	    linksToApp = new HashSet<AppData>();
-	    linksFromApp = new HashSet<AppData>();
+	    appUrl = "NULL-START";
+	    linksToApp = new LinkedList<AppData>();
+	    linksFromApp = new LinkedList<AppData>();
 		sizeX = 0; 
 		sizeY = 0;
 		drawX = 10; 
@@ -47,8 +49,8 @@ public class AppData {
 	  {
 	    appName = newName;
 	    appUrl = newUrl;
-	    linksToApp = new HashSet<AppData>();
-	    linksFromApp = new HashSet<AppData>();
+	    linksToApp = new LinkedList<AppData>();
+	    linksFromApp = new LinkedList<AppData>();
 		sizeX = 0; 
 		sizeY = 0;
 		drawX = 10; 
@@ -62,62 +64,86 @@ public class AppData {
 	  }
 	  
 
-	  public AppData(String newName, String newUrl, Collection<AppData> linksTo, Collection<AppData> linksFrom)
-	  {
-	    appName = newName;
-	    appUrl = newUrl;
-	    linksToApp = linksTo;
-	    linksFromApp = linksFrom;
-		sizeX = 0; 
-		sizeY = 0;
-		drawX = 10; 
-		drawY = 10;
-		printUrl = appUrl.substring(10, 40);
-	  }
+//	  public AppData(String newName, String newUrl, Collection<AppData> linksTo, Collection<AppData> linksFrom)
+//	  {
+//	    appName = newName;
+//	    appUrl = newUrl;
+//	    linksToApp = linksTo;
+//	    linksFromApp = linksFrom;
+//		sizeX = 0; 
+//		sizeY = 0;
+//		drawX = 10; 
+//		drawY = 10;
+//		printUrl = appUrl.substring(10, 40);
+//	  }
 
 
-	public String getAppName() {
+	public String getAppName() 
+	{
 		return appName;
 	}
 
 
 
-	public void setAppName(String appName) {
+	public void setAppName(String appName) 
+	{
 		this.appName = appName;
 	}
 
 
 
-	public String getAppUrl() {
+	public String getAppUrl() 
+	{
 		return appUrl;
 	}
 
 
 
-	public void setAppUrl(String appUrl) {
+	public void setAppUrl(String appUrl) 
+	{
 		this.appUrl = appUrl;
 	}
 
 
 
-	public String getAppDescription() {
+	public String getAppDescription() 
+	{
 		return appDescription;
 	}
 
 
 
-	public void setAppDescription(String appDescription) {
+	public void setAppDescription(String appDescription) 
+	{
 		this.appDescription = appDescription;
 	}
 
-	public void addLinksToApp(Collection<AppData> newLinks)
+//	public void addLinksToApp(Collection<String> newLinks)
+//	{
+//		linksToApp.addAll(newLinks);
+//	}
+	public void addLinkToApp(AppData newLinks)
 	{
-		linksToApp.addAll(newLinks);
+		linksToApp.add(newLinks);
 	}
-	
-	public void addLinksFromApp(Collection<AppData> newLinks)
+
+//	public void addLinksFromApp(Collection<String> newLinks)
+//	{
+//		linksFromApp.addAll(newLinks);
+//	}
+	public void addLinkFromApp(AppData newLinks)
 	{
-		linksFromApp.addAll(newLinks);
+		linksFromApp.add(newLinks);
+	}
+
+	public LinkedList<AppData> getLinksFromApp()
+	{
+		return linksFromApp;
+	}
+		
+	public LinkedList<AppData> getLinksToApp()
+	{
+		return linksToApp;
 	}
 		
 	

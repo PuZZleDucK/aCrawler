@@ -8,6 +8,8 @@ import java.awt.Dimension;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.ForkJoinPool;
 
 import javax.swing.BoxLayout;
@@ -28,7 +30,8 @@ import javax.swing.UIManager;
  */
 public class ACrawler {
 
-	protected final static Collection<AppData> appHashSet = Collections.synchronizedSet(new HashSet<AppData>());
+//	protected final static Collection<AppData> appHashSet = Collections.synchronizedSet(new HashSet<AppData>());
+	protected final static List<AppData> appLinkedList = Collections.synchronizedList(new LinkedList<AppData>());
 
 	protected static ForkJoinPool forkPool;
 	
@@ -60,7 +63,9 @@ public class ACrawler {
 	 */
 	protected static void initDB() {
 		// just clearing hashset for now
-		appHashSet.clear();
+		//appHashSet.clear();
+		
+		appLinkedList.clear();
 		
 	}
 

@@ -27,26 +27,57 @@ public class ScanPanel extends JPanel {
 	    
 	    
 	      
-	    drawX = 50;
-	    drawY = 50;
-	    Iterator i = ACrawler.appHashSet.iterator();
+//	    drawX = 50;
+//	    drawY = 50;
+	    
+	    Iterator<AppData> i = ACrawler.appLinkedList.iterator();
+//	    Iterator i = ACrawler.appHashSet.iterator();
 	    //need to switch to list to have order
 	    
 	    while( i.hasNext() )
 	    {
 	    	AppData thisAppData = (AppData) i.next();
-	    	thisAppData.calcDraw(g);
-	        g.fillRect(drawX, drawY-10, (int)thisAppData.getSizeY(), (int)thisAppData.getSizeX());
+	    	thisAppData.calcDraw(g);//not location
+	    	
+	    	if(thisAppData.getDrawX() <= 10)//calc location here
+	    	{
+		    	thisAppData.setDrawX(drawX);
+		    	thisAppData.setDrawY(drawY);
+		    	
+		    	drawX += thisAppData.getSizeY()+20;//20px padding between cells
+		    	if( drawX >= 600 )
+		      	{
+		    		drawX = 50;
+		        	drawY += 30;
+		      	}
+		    	
+	    	}else{//collision moving????
+	    		
+	    	}
+	    	
+	        g.fillRect(thisAppData.getDrawX(), thisAppData.getDrawY()-10, (int)thisAppData.getSizeY(), (int)thisAppData.getSizeX());
 			g.setColor(Color.blue);
-	        g.drawString(thisAppData.getPrintUrl(), drawX+5, drawY+5);
+	        g.drawString(thisAppData.getPrintUrl(), thisAppData.getDrawX()+5, thisAppData.getDrawY()+5);
+	        
+	        //draw links to and from
+	        Iterator<AppData> toLinks = thisAppData.getLinksToApp().iterator();
+		    while( toLinks.hasNext() )
+		    {
+		    	g.setColor(Color.green);
+		    	AppData thisToAppData = toLinks.next();
+		    	g.drawLine(thisAppData.getDrawX(), thisAppData.getDrawY(), 
+		    			thisToAppData.getDrawX(), thisToAppData.getDrawY());
+		    }
+	        Iterator<AppData> fromLinks = thisAppData.getLinksFromApp().iterator();
+		    while( fromLinks.hasNext() )
+		    {
+		    	g.setColor(Color.red);
+		    	AppData thisFromAppData = fromLinks.next();
+		    	g.drawLine(thisAppData.getDrawX(), thisAppData.getDrawY(), 
+		    			thisFromAppData.getDrawX(), thisFromAppData.getDrawY());
+		    }
 	        
 	        
-	      drawX += thisAppData.getSizeY()+20;//20px padding between cells
-	      if( drawX >= 600 )
-	      {
-	        drawX = 50;
-	        drawY += 80;
-	      }
 
 	    }    
 

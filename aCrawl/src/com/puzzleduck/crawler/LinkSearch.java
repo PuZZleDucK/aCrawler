@@ -28,15 +28,17 @@ import org.htmlparser.util.ParserException;
 public class LinkSearch extends RecursiveAction {
 
 	private String thisUrl;
+	private AppData thisFromApp;
 	
-	public LinkSearch(String startUrl) {
+	public LinkSearch(String startUrl, AppData fromApp) {
 		// TODOne
 		thisUrl = startUrl;
+		thisFromApp = fromApp;
 	}
 
 	@Override
 	protected void compute() {
-		// TODO Auto-generated method stub
+		// TODOne Auto-generated method stub
 	    System.out.println("compute thread");
 
 		//check if url valid
@@ -45,10 +47,12 @@ public class LinkSearch extends RecursiveAction {
 		
 			//create dummy app data
 	        AppData urlAsApp = new AppData("",thisUrl);
+	        urlAsApp.addLinkFromApp(thisFromApp);
 		    System.out.println("url");
 
-			//check if already in completed list
-	        if(! ACrawler.appHashSet.contains(urlAsApp))
+			//check if already in completed list   
+	        //if(! ACrawler.appHashSet.contains(urlAsApp))
+		    if(! ACrawler.appLinkedList.contains(urlAsApp))
 	        {
 	    	    System.out.println("new");
 	    	    //get links
@@ -70,7 +74,7 @@ public class LinkSearch extends RecursiveAction {
 		        	    System.out.print("I.");
 		                AppData newAppData = new AppData("",currentFoundLink.getLink().toString());
 			    		  //not in completed or todo already
-	                	if(!ACrawler.appHashSet.contains(newAppData))
+	                	if(!ACrawler.appLinkedList.contains(newAppData))
 	                	{
 	    	        	    System.out.print("N.");
 //	    	        	    System.out.println("Selected:" + (String) ACrawler.startingAddressComboBox.getSelectedItem());
@@ -80,17 +84,23 @@ public class LinkSearch extends RecursiveAction {
 	                		{
 	        	        	    System.out.print("K:...\n");
 //	                			actions.add(new LinkSearch(newAppData.getAppUrl()));//submit now instead
-	        	        	    ACrawler.forkPool.submit(new LinkSearch(newAppData.getAppUrl()));
+	        	        	    ACrawler.forkPool.submit(new LinkSearch(newAppData.getAppUrl(), urlAsApp));
 	                			//ACrawler.todoLinkList.add(new JLabel(newAppData.getAppUrl()));
 	                		}
 
 	                		
-	                	}//not in list
+	                	}else{ //not in list... else: add back link to other app
+//	                		ACrawler.appHashSet.remove(newAppData);
+//	                		ACrawler.appHashSet.add(newAppData);... now appLinkedList
+	                		AppData oldAppData = ACrawler.appLinkedList.get(ACrawler.appLinkedList.indexOf(newAppData)); //update app data with 'all' info, not just url
+	                		oldAppData.addLinkFromApp(urlAsApp);
+	            	        urlAsApp.addLinkToApp(thisFromApp);
+	                	}
 	                }//valid link
 	            }//for each link
 
 	            //add to completed list
-	        	ACrawler.appHashSet.add(urlAsApp);
+	        	ACrawler.appLinkedList.add(urlAsApp);
     		//	ACrawler.doneLinkList.add(new JLabel(urlAsApp.getAppUrl()));
 	        	
 	    	    ACrawler.scanPanel.repaint();
