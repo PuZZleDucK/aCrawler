@@ -3,6 +3,8 @@
  */
 package com.puzzleduck.crawler;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.Collection;
 import java.util.HashSet;
 
@@ -17,10 +19,13 @@ public class AppData {
 	  private String appDescription;
 	  private Collection<AppData> linksToApp;
 	  private Collection<AppData> linksFromApp; 
-	  private int sizeX = 0; 
-	  private int sizeY = 0;
+	  private double sizeX = 0; 
+	  private double sizeY = 0;
 	  private int drawX = 10; 
 	  private int drawY = 10;
+	  private String printUrl;
+	  
+	  
 	
 	
 
@@ -32,6 +37,10 @@ public class AppData {
 	    appUrl = "";
 	    linksToApp = new HashSet<AppData>();
 	    linksFromApp = new HashSet<AppData>();
+		sizeX = 0; 
+		sizeY = 0;
+		drawX = 10; 
+		drawY = 10;
 	}
 
 	  public AppData(String newName, String newUrl)
@@ -40,6 +49,16 @@ public class AppData {
 	    appUrl = newUrl;
 	    linksToApp = new HashSet<AppData>();
 	    linksFromApp = new HashSet<AppData>();
+		sizeX = 0; 
+		sizeY = 0;
+		drawX = 10; 
+		drawY = 10;
+		if(appUrl.length() > 30)
+		{
+			printUrl = "..." + appUrl.substring(appUrl.length()-30, appUrl.length());
+		}else{
+			printUrl = appUrl;
+		}
 	  }
 	  
 
@@ -49,6 +68,11 @@ public class AppData {
 	    appUrl = newUrl;
 	    linksToApp = linksTo;
 	    linksFromApp = linksFrom;
+		sizeX = 0; 
+		sizeY = 0;
+		drawX = 10; 
+		drawY = 10;
+		printUrl = appUrl.substring(10, 40);
 	  }
 
 
@@ -154,7 +178,7 @@ public class AppData {
 		this.drawY = drawY;
 	}
 
-	public int getSizeX() {
+	public double getSizeX() {
 		return sizeX;
 	}
 
@@ -162,7 +186,7 @@ public class AppData {
 		this.sizeX = sizeX;
 	}
 
-	public int getSizeY() {
+	public double getSizeY() {
 		return sizeY;
 	}
 
@@ -170,7 +194,26 @@ public class AppData {
 		this.sizeY = sizeY;
 	}
 
-	
+	public void calcDraw(Graphics g) {
+		// TODO Auto-generated method stub
+		//calc size of text (url for now)
+		//set height width & background color
+		sizeY = g.getFontMetrics().getStringBounds(printUrl, g).getWidth() + 10;// 10 and 10 px margins
+		sizeX = g.getFontMetrics().getStringBounds(printUrl, g).getHeight() + 10;
+		g.setColor(Color.yellow);
+		
+		
+		
+	}
+
+
+	public String getPrintUrl() {
+		return printUrl;
+	}
+
+	public void setPrintUrl(String printUrl) {
+		this.printUrl = printUrl;
+	}
 	
 	
 	

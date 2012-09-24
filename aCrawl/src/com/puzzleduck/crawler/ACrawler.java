@@ -81,8 +81,8 @@ public class ACrawler {
 		//main frame
 	    mainWindow = new JFrame();
 	    mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		int windowHeight = 600;
-	    int windowWidth = 400;
+		int windowHeight = 800;
+	    int windowWidth = 800;
 	    mainWindow.setBounds(0, 0, windowWidth, windowHeight);
 
 	    //main panel
@@ -96,6 +96,7 @@ public class ACrawler {
 		
 
 	    scanPanel = new ScanPanel();
+	    scanPanel.setPreferredSize(new Dimension(800,600));
 	    mainPanel.add(scanPanel);
 	    
 	    startingAddressComboBox = new JComboBox<String>();
@@ -110,6 +111,10 @@ public class ACrawler {
 	    startingAddressComboBox.insertItemAt("http://www.amazon.com/mobile-apps",1);
 	    startingAddressComboBox.insertItemAt("http://www.appbrain.com/",2);
 	    startingAddressComboBox.setSelectedIndex(0);
+	    JPanel comboPanel = new JPanel();
+	    comboPanel.add(startingAddressComboBox);
+	    mainPanel.add(comboPanel);
+
 
 		JButton cdgCrawlButton = new JButton("Config Crawl");
 		JButton cfgDbButton = new JButton("Config DB");
@@ -119,7 +124,6 @@ public class ACrawler {
 
 	    mainPanel.add(cdgCrawlButton);
 	    mainPanel.add(cfgDbButton);
-	    mainPanel.add(startingAddressComboBox);
 
 //	    JTextArea doneText = new JTextArea();
 //	    JPanel textPanel = new JPanel();

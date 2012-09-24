@@ -26,20 +26,26 @@ public class ScanPanel extends JPanel {
 	    g.fillRect(0, 0 , g.getClipBounds(getVisibleRect()).width, g.getClipBounds(getVisibleRect()).height);
 	    
 	    
-	    g.setColor(Color.blue);  
-	    drawX = 10;
-	    drawY = 10;
+	      
+	    drawX = 50;
+	    drawY = 50;
 	    Iterator i = ACrawler.appHashSet.iterator();
+	    //need to switch to list to have order
+	    
 	    while( i.hasNext() )
 	    {
-	      AppData o = (AppData) i.next(); 
-	      g.fillRect(drawX, drawY, 5, 5);
-	      g.drawString(o.getAppUrl(), drawX, drawY);
-	      drawX += 15;
-	      if( drawX >= 200 )
+	    	AppData thisAppData = (AppData) i.next();
+	    	thisAppData.calcDraw(g);
+	        g.fillRect(drawX, drawY-10, (int)thisAppData.getSizeY(), (int)thisAppData.getSizeX());
+			g.setColor(Color.blue);
+	        g.drawString(thisAppData.getPrintUrl(), drawX+5, drawY+5);
+	        
+	        
+	      drawX += thisAppData.getSizeY()+20;//20px padding between cells
+	      if( drawX >= 600 )
 	      {
-	        drawX = 10;
-	        drawY += 20;
+	        drawX = 50;
+	        drawY += 80;
 	      }
 
 	    }    
