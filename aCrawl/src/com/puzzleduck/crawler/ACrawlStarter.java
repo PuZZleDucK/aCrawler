@@ -19,13 +19,7 @@ public class ACrawlStarter implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 
-//		arg0.getID();
-		// TODO optional execuitor and fork/join count config
-		 //   jCrawler.executorService = Executors.newFixedThreadPool(6);
-
-		//System.out.println( "exist: " + (ACrawler.forkPool == null));
-		
-		//check for running instances first... and simply kill if found
+		//check for running instances first... and simply kill if found... would be nice to go through and resume someday... not today
 		if(ACrawler.forkPool == null)
 		{
 			ACrawler.forkPool = new ForkJoinPool(4);
@@ -36,25 +30,15 @@ public class ACrawlStarter implements ActionListener {
 			ACrawler.forkPool = new ForkJoinPool(4);
 		}
 		
-//		System.out.println( "Crawl Parallelism: " + ACrawler.forkPool.getParallelism());
 		String startUrl = (String) ACrawler.startingAddressComboBox.getSelectedItem();
 		
 	    try
 	    {   
 		    System.out.println( "Crawl start: " + startUrl );
-	    	
-	    	
 	    	ACrawler.forkPool.invoke( new LinkSearch(startUrl, new AppData()) );
-	    	
-	    	
 	    }catch(Exception e)
 	    {
 	      System.out.println( "Error starting crawl: " + e.toString() );
 	    }
-
-		
-		
-
-	}
-
-}
+	}//action
+}//class

@@ -27,9 +27,6 @@ public class AppData {
 	  private float drawY = 0;
 	  private String printUrl;
 	  
-	  
-	
-	
 
 	/**
 	 * storage object for data regarding an application
@@ -63,21 +60,6 @@ public class AppData {
 		}
 	  }
 	  
-
-//	  public AppData(String newName, String newUrl, Collection<AppData> linksTo, Collection<AppData> linksFrom)
-//	  {
-//	    appName = newName;
-//	    appUrl = newUrl;
-//	    linksToApp = linksTo;
-//	    linksFromApp = linksFrom;
-//		sizeX = 0; 
-//		sizeY = 0;
-//		drawX = 10; 
-//		drawY = 10;
-//		printUrl = appUrl.substring(10, 40);
-//	  }
-
-
 	public String getAppName() 
 	{
 		return appName;
@@ -111,26 +93,16 @@ public class AppData {
 		return appDescription;
 	}
 
-
-
 	public void setAppDescription(String appDescription) 
 	{
 		this.appDescription = appDescription;
 	}
-
-//	public void addLinksToApp(Collection<String> newLinks)
-//	{
-//		linksToApp.addAll(newLinks);
-//	}
+	
 	public void addLinkToApp(AppData newLinks)
 	{
 		linksToApp.add(newLinks);
 	}
 
-//	public void addLinksFromApp(Collection<String> newLinks)
-//	{
-//		linksFromApp.addAll(newLinks);
-//	}
 	public void addLinkFromApp(AppData newLinks)
 	{
 		linksFromApp.add(newLinks);
@@ -146,10 +118,6 @@ public class AppData {
 		return linksToApp;
 	}
 		
-	
-	
-	
-	
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
@@ -221,14 +189,11 @@ public class AppData {
 	}
 
 	public void calcDraw(Graphics g) {
-		// TODO Auto-generated method stub
 		//calc size of text (url for now)
 		//set height width & background color
 		sizeY = g.getFontMetrics().getStringBounds(printUrl, g).getWidth() + 10;// 10 and 10 px margins
 		sizeX = g.getFontMetrics().getStringBounds(printUrl, g).getHeight() + 10;
 		g.setColor(Color.yellow);
-		
-		
 		
 	}
 
@@ -240,8 +205,5 @@ public class AppData {
 	public void setPrintUrl(String printUrl) {
 		this.printUrl = printUrl;
 	}
-	
-	
-	
-	
-}
+
+}//class

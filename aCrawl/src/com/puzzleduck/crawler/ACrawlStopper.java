@@ -21,8 +21,6 @@ public class ACrawlStopper implements ActionListener {
 
 		ACrawler.forkPool.shutdownNow();
 		System.out.println( "Crawl Shutdown.");
-		
-
-	}
-
-}
+		//maybe should put ACrawler.forkPool = null; here too ?
+	}//action
+}//class

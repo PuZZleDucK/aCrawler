@@ -28,45 +28,32 @@ import javax.swing.UIManager;
  * @author PuZZleDucK
  * Main class to call ui and hold central DB
  */
-public class ACrawler {
-
-//	protected final static Collection<AppData> appHashSet = Collections.synchronizedSet(new HashSet<AppData>());
+public class ACrawler 
+{
 	protected final static List<AppData> appLinkedList = Collections.synchronizedList(new LinkedList<AppData>());
-
 	protected static ForkJoinPool forkPool;
 	
 	protected static JComboBox<String> startingAddressComboBox;
-
 	protected static JFrame mainWindow;
-	
 	protected static ScanPanel scanPanel;
-	
-//	protected static JTextArea todoLinkList;
-//	protected static JTextArea doneLinkList;
 	
 	/**
 	 * @param args 
 	 *     address to start web crawl from
 	 */
-	public static void main(String[] args) {
-		// TODOne Init UI
+	public static void main(String[] args) 
+	{
 		initUI(args);
-		
-		// TODOne InitDB
 		initDB();
-
-		
 	}
 
 	/**
 	 *     Initialize db or linked list
 	 */
-	protected static void initDB() {
-		// just clearing hashset for now
-		//appHashSet.clear();
-		
+	protected static void initDB() 
+	{
+		// just clearing list for now
 		appLinkedList.clear();
-		
 	}
 
 	/**
@@ -99,20 +86,13 @@ public class ACrawler {
 	    mainPanel.add(versionLabel);
 	    mainWindow.setTitle("Scan Window");
 		
-
+	    //graphics panel
 	    scanPanel = new ScanPanel();
 	    scanPanel.setPreferredSize(new Dimension(800,600));
 	    mainPanel.add(scanPanel);
 	    
 	    startingAddressComboBox = new JComboBox<String>();
-//		if(args[0] == null)
-//		{
-		    startingAddressComboBox.insertItemAt("http://play.google.com/store",0);
-//		}else
-//		{
-//		    startingAddressComboBox.insertItemAt(args[0],0);
-//		    startingAddressComboBox.insertItemAt("http://play.google.com/store",3);
-//		}
+		startingAddressComboBox.insertItemAt("http://play.google.com/store",0);
 	    startingAddressComboBox.insertItemAt("http://www.amazon.com/mobile-apps",1);
 	    startingAddressComboBox.insertItemAt("http://www.appbrain.com/",2);
 	    startingAddressComboBox.setSelectedIndex(0);
@@ -120,75 +100,29 @@ public class ACrawler {
 	    JPanel comboPanel = new JPanel();
 	    comboPanel.add(startingAddressComboBox);
 	    lowerPanel.add(comboPanel);
-//	    mainPanel.add(comboPanel);
 
 		JButton cdgCrawlButton = new JButton("Config Crawl");
 		JButton cfgDbButton = new JButton("Config DB");
 		JButton startButton = new JButton("Start Crawl");
 	    JButton stopButton = new JButton("Stop Crawl");
 	    
-
-//	    mainPanel.add(cdgCrawlButton);
-//	    mainPanel.add(cfgDbButton);
 	    lowerPanel.add(cdgCrawlButton);
 	    lowerPanel.add(cfgDbButton);
 
-//	    JTextArea doneText = new JTextArea();
-//	    JPanel textPanel = new JPanel();
-//	    textPanel.setLayout(new BoxLayout(textPanel,BoxLayout.LINE_AXIS));
-//	    textPanel.add(doneText);
-//	    mainWindow.add(textPanel);
-
-
-//	    mainPanel.add(startButton);
-//	    mainPanel.add(stopButton);
 	    lowerPanel.add(startButton);
 	    lowerPanel.add(stopButton);
 	    lowerPanel.setPreferredSize(new Dimension(10,10));
 
 	    mainPanel.add(lowerPanel);
 
-//	    
-//	    todoLinkList = new JList();
-//	    todoLinkList.setVisibleRowCount(3);
-//	    JScrollPane todoListScroller = new JScrollPane(todoLinkList);
-//	    todoListScroller.setPreferredSize(new Dimension(20, 10));
-//
-//	    mainWindow.add(todoListScroller);
-		
+	    startButton.addActionListener(new ACrawlStarter());
+	    stopButton.addActionListener(new ACrawlStopper());
 	    mainWindow.setVisible(true);
 
-
-	    System.out.println("done");
-		//in button events:
-//	    cdgCrawlButton.addActionListener();//TODO
-//	    cfgDbButton.addActionListener();//TODO
-	    // TODO Init exex/fork
-		// TODO Init start exec
-	    startButton.addActionListener(new ACrawlStarter());
-	    		//stop exec
-	    stopButton.addActionListener(new ACrawlStopper());//TODO 
-
-		
-	    
-	    
-	    
-	    
-	    
-	    
-	    //start canvas draw routine:
-//	    scanPanel.repaint();//...moving to alt thread...
+	    //start canvas draw routine:...moving to alt thread...
 	    ForkJoinPool uiPool = new ForkJoinPool(2);
 	    uiPool.invoke( new BackgroundPaint() );
 	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	}
+	}//init ui
 
-}
+}//class

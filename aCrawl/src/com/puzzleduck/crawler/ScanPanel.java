@@ -106,32 +106,8 @@ public class ScanPanel extends JPanel {
 		    			thisAppData.setDrawY(thisAppData.getDrawY()+d);//getting pushed off the edge due to pressure
 		    		}
 		    		
-//		    		//block at bounds
-//		    		if( thisAppData.getDrawX() < 5 )
-//		    		{
-//		    			thisAppData.setDrawX(5);
-//		    		}
-//		    		if( thisAppData.getDrawX() > displayWidth-5 ) // (5 * (5-1))    (n * (n-1))
-//		    		{
-//		    			thisAppData.setDrawX(displayWidth-5);
-//		    		}
-//		    		if( thisAppData.getDrawY() < 5 )
-//		    		{
-//		    			thisAppData.setDrawY(5);
-//		    		}
-//		    		if( thisAppData.getDrawY() > displayHeight-5 )
-//		    		{
-//		    			thisAppData.setDrawY(displayHeight-5);//getting pushed off the edge due to pressure
-//		    		}
-	    	    	
-	    	    	
-	    	    	
-		    		
-	    	    }
-	    		
-	    		
-	    		
-	    	}
+	    	    }//loop other linnks
+	    	}//moving/updating link display
 	    	
 	        g.fillRect((int)thisAppData.getDrawX(), (int)thisAppData.getDrawY()-10, (int)thisAppData.getSizeY(), (int)thisAppData.getSizeX());
 			g.setColor(Color.blue);
