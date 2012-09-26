@@ -4,7 +4,9 @@
 package com.puzzleduck.crawler;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.GraphicsEnvironment;
 import java.util.Iterator;
 
 import javax.swing.JPanel;
@@ -17,12 +19,27 @@ public class ScanPanel extends JPanel {
 
 	  private int drawX = 50;
 	  private int drawY = 50;
+	  private static Font thisFont = new Font ("Liberation Mono", 0 , 8);// or "Jokerman"
+	  // fonts: progenisis flatline Wargames Swift Monospaced.plain "Marked Fool" "Liberation Mono" Delphine 
 
 	  
 	  public void paintComponent(Graphics g)
 	  {
 	    super.paintComponent(g);  
 	    g.setColor(Color.white);  
+
+	    //get list of fonts... put in menu later
+	    GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+	    Font[] allfonts = ge.getAllFonts();
+//	    for(int i = 0; i < allfonts.length ;i++ )
+//	    {
+//	    	System.out.println("Font: " + allfonts[i].getName());
+//	    }
+	    
+	    
+	    //Font thisFont = Font.getFont("Courier");// 
+	    
+	    g.setFont(thisFont);
 	    g.fillRect(0, 0 , g.getClipBounds(getVisibleRect()).width, g.getClipBounds(getVisibleRect()).height);
 	    
 	    
