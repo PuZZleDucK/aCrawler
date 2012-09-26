@@ -23,8 +23,8 @@ public class AppData {
 	  private LinkedList<AppData> linksFromApp; 
 	  private double sizeX = 0; 
 	  private double sizeY = 0;
-	  private int drawX = 0; 
-	  private int drawY = 0;
+	  private float drawX = 0; 
+	  private float drawY = 0;
 	  private String printUrl;
 	  
 	  
@@ -188,19 +188,19 @@ public class AppData {
 		return true;
 	}
 
-	public int getDrawX() {
+	public float getDrawX() {
 		return drawX;
 	}
 
-	public void setDrawX(int drawX) {
+	public void setDrawX(float drawX) {
 		this.drawX = drawX;
 	}
 
-	public int getDrawY() {
+	public float getDrawY() {
 		return drawY;
 	}
 
-	public void setDrawY(int drawY) {
+	public void setDrawY(float drawY) {
 		this.drawY = drawY;
 	}
 
