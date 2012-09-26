@@ -25,7 +25,7 @@ public class ScanPanel extends JPanel {
 	    super.paintComponent(g);  
 	    g.setColor(Color.white);  
 
-	    int displayHeight = g.getClipBounds().height/3*2;
+	    int displayHeight = g.getClipBounds().height;
 	    int displayWidth = g.getClipBounds().width;
 	    System.out.println("Display: (" + displayHeight +","+ displayWidth +")");
 	    
@@ -58,65 +58,71 @@ public class ScanPanel extends JPanel {
 	    	    {
 	    	    	AppData otherAppData = (AppData) other.next();
 	    	    	//small local effect
-	    	    	if(   Math.abs(thisAppData.getDrawX() - otherAppData.getDrawX()) < 30 )
+	    	    	float xDelta = Math.abs(thisAppData.getDrawX() - otherAppData.getDrawX());
+	    	    	float yDelta = Math.abs(thisAppData.getDrawY() - otherAppData.getDrawY());
+	    	    	if(   xDelta < 60 ) // 30-delta/30
 	    	    	{
 			    		if( thisAppData.getDrawX() < otherAppData.getDrawX() )
 			    		{
-			    			thisAppData.setDrawX(thisAppData.getDrawX()-1);
+			    			thisAppData.setDrawX(  thisAppData.getDrawX() - (60-xDelta)/10  )  ; //range up to 2
 			    		}
 			    		if( thisAppData.getDrawX() > otherAppData.getDrawX() )
 			    		{
-			    			thisAppData.setDrawX(thisAppData.getDrawX()+1);
+			    			thisAppData.setDrawX(thisAppData.getDrawX() + (60-xDelta)/10);
 			    		}
 	    	    	}//repel x
-	    	    	if(   Math.abs(thisAppData.getDrawY() - otherAppData.getDrawY()) < 30 )
+	    	    	if(  yDelta  < 60 )
 	    	    	{
 			    		if( thisAppData.getDrawY() < otherAppData.getDrawY() )
 			    		{
-			    			thisAppData.setDrawY(thisAppData.getDrawY()-1);
+			    			thisAppData.setDrawY(thisAppData.getDrawY() - (60-yDelta)/10);
 			    		}
 			    		if( thisAppData.getDrawY() > otherAppData.getDrawY() )
 			    		{
-			    			thisAppData.setDrawY(thisAppData.getDrawY()+1);
+			    			thisAppData.setDrawY(thisAppData.getDrawY() + (60-yDelta)/10);
 			    		}
 	    	    	}//repel y
 	    	    	
+
 		    		//repel from bounds
-		    		if( thisAppData.getDrawX() < (displayWidth/5) )
+		    		if( thisAppData.getDrawX() < 60 )
 		    		{
-		    			thisAppData.setDrawX(thisAppData.getDrawX()+2);
+		    			float d = 60 - thisAppData.getDrawX();
+		    			thisAppData.setDrawX(thisAppData.getDrawX()+d);//(30-thisAppData.getDrawX()) looked promising
 		    		}
-		    		if( thisAppData.getDrawX() > (displayWidth/5*4) ) // (5 * (5-1))    (n * (n-1))
+		    		if( thisAppData.getDrawX() > (displayWidth-60) ) // (5 * (5-1))    (n * (n-1))
 		    		{
-		    			thisAppData.setDrawX(thisAppData.getDrawX()-2);
+		    			float d = (displayWidth-60) - thisAppData.getDrawX();
+		    			thisAppData.setDrawX(thisAppData.getDrawX()+d);
 		    		}
-		    		if( thisAppData.getDrawY() < (displayHeight/5) )
+		    		if( thisAppData.getDrawY() < 60 )
 		    		{
-		    			thisAppData.setDrawY(thisAppData.getDrawY()+2);
+		    			float d = 60 - thisAppData.getDrawY();
+		    			thisAppData.setDrawY(thisAppData.getDrawY()+d);
 		    		}
-		    		if( thisAppData.getDrawY() > (displayHeight/5*4) )
+		    		if( thisAppData.getDrawY() > (displayHeight-60) )
 		    		{
-		    			thisAppData.setDrawY(thisAppData.getDrawY()-2);//getting pushed off the edge due to pressure
+		    			float d = (displayHeight-60) - thisAppData.getDrawY();
+		    			thisAppData.setDrawY(thisAppData.getDrawY()+d);//getting pushed off the edge due to pressure
 		    		}
 		    		
-		    		
-		    		//block at bounds
-		    		if( thisAppData.getDrawX() < 0 )
-		    		{
-		    			thisAppData.setDrawX(0);
-		    		}
-		    		if( thisAppData.getDrawX() > displayWidth ) // (5 * (5-1))    (n * (n-1))
-		    		{
-		    			thisAppData.setDrawX(displayWidth);
-		    		}
-		    		if( thisAppData.getDrawY() < 0 )
-		    		{
-		    			thisAppData.setDrawY(0);
-		    		}
-		    		if( thisAppData.getDrawY() > displayHeight )
-		    		{
-		    			thisAppData.setDrawY(displayHeight);//getting pushed off the edge due to pressure
-		    		}
+//		    		//block at bounds
+//		    		if( thisAppData.getDrawX() < 5 )
+//		    		{
+//		    			thisAppData.setDrawX(5);
+//		    		}
+//		    		if( thisAppData.getDrawX() > displayWidth-5 ) // (5 * (5-1))    (n * (n-1))
+//		    		{
+//		    			thisAppData.setDrawX(displayWidth-5);
+//		    		}
+//		    		if( thisAppData.getDrawY() < 5 )
+//		    		{
+//		    			thisAppData.setDrawY(5);
+//		    		}
+//		    		if( thisAppData.getDrawY() > displayHeight-5 )
+//		    		{
+//		    			thisAppData.setDrawY(displayHeight-5);//getting pushed off the edge due to pressure
+//		    		}
 	    	    	
 	    	    	
 	    	    	
@@ -137,27 +143,21 @@ public class ScanPanel extends JPanel {
 		    {
 		    	g.setColor(Color.green);
 		    	AppData thisToAppData = toLinks.next();
-		    	g.drawLine((int)thisAppData.getDrawX(), (int)thisAppData.getDrawY(), 
-		    			(int)thisToAppData.getDrawX(), (int)thisToAppData.getDrawY());
+		    	g.drawLine((int)thisAppData.getDrawX()+5, (int)thisAppData.getDrawY(), 
+		    			(int)thisToAppData.getDrawX(), (int)thisToAppData.getDrawY()+5);
 		    }
 	        Iterator<AppData> fromLinks = thisAppData.getLinksFromApp().iterator();
 		    while( fromLinks.hasNext() )
 		    {
 		    	g.setColor(Color.red);
 		    	AppData thisFromAppData = fromLinks.next();
-		    	g.drawLine((int)thisAppData.getDrawX(), (int)thisAppData.getDrawY(), 
-		    			(int)thisFromAppData.getDrawX(), (int)thisFromAppData.getDrawY());
+		    	g.drawLine((int)thisAppData.getDrawX()+10, (int)thisAppData.getDrawY(), 
+		    			(int)thisFromAppData.getDrawX(), (int)thisFromAppData.getDrawY()+10);
 		    }
 	        
-	        
-
-	    }    
-
+	    }    //Iterator over apps
 
 	  }//paint
 
 	
-	
-	
-	
-}
+}//class

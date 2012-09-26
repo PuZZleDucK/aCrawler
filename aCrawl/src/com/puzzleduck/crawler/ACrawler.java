@@ -116,10 +116,11 @@ public class ACrawler {
 	    startingAddressComboBox.insertItemAt("http://www.amazon.com/mobile-apps",1);
 	    startingAddressComboBox.insertItemAt("http://www.appbrain.com/",2);
 	    startingAddressComboBox.setSelectedIndex(0);
+	    JPanel lowerPanel = new JPanel();
 	    JPanel comboPanel = new JPanel();
 	    comboPanel.add(startingAddressComboBox);
-	    mainPanel.add(comboPanel);
-
+	    lowerPanel.add(comboPanel);
+//	    mainPanel.add(comboPanel);
 
 		JButton cdgCrawlButton = new JButton("Config Crawl");
 		JButton cfgDbButton = new JButton("Config DB");
@@ -127,8 +128,10 @@ public class ACrawler {
 	    JButton stopButton = new JButton("Stop Crawl");
 	    
 
-	    mainPanel.add(cdgCrawlButton);
-	    mainPanel.add(cfgDbButton);
+//	    mainPanel.add(cdgCrawlButton);
+//	    mainPanel.add(cfgDbButton);
+	    lowerPanel.add(cdgCrawlButton);
+	    lowerPanel.add(cfgDbButton);
 
 //	    JTextArea doneText = new JTextArea();
 //	    JPanel textPanel = new JPanel();
@@ -136,10 +139,14 @@ public class ACrawler {
 //	    textPanel.add(doneText);
 //	    mainWindow.add(textPanel);
 
-	    
-	    mainPanel.add(startButton);
-	    mainPanel.add(stopButton);
 
+//	    mainPanel.add(startButton);
+//	    mainPanel.add(stopButton);
+	    lowerPanel.add(startButton);
+	    lowerPanel.add(stopButton);
+	    lowerPanel.setPreferredSize(new Dimension(10,10));
+
+	    mainPanel.add(lowerPanel);
 
 //	    
 //	    todoLinkList = new JList();

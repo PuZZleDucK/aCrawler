@@ -18,9 +18,6 @@ import org.htmlparser.tags.LinkTag;
 import org.htmlparser.util.NodeList;
 import org.htmlparser.util.ParserException;
 
-
-
-
 /**
  * @author bminerds
  *
@@ -31,18 +28,15 @@ public class LinkSearch extends RecursiveAction {
 	private AppData thisFromApp;
 	
 	public LinkSearch(String startUrl, AppData fromApp) {
-		// TODOne
 		thisUrl = startUrl;
 		thisFromApp = fromApp;
 	}
 
 	@Override
 	protected void compute() {
-		// TODOne Auto-generated method stub
 	    System.out.println("compute thread");
 
-		//check if url valid
-        try {
+        try {//check if url valid
 			URL urlObject = new URL(thisUrl);
 		
 			//create dummy app data
