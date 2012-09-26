@@ -28,6 +28,10 @@ public class ScanPanel extends JPanel {
 	    super.paintComponent(g);  
 	    g.setColor(Color.white);  
 
+	    int displayHeight = g.getClipBounds().height;
+	    int displayWidth = g.getClipBounds().width;
+	    System.out.println("Display: (" + displayHeight +","+ displayWidth +")");
+	    
 	    //get list of fonts... put in menu later
 	    GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 	    Font[] allfonts = ge.getAllFonts();
@@ -56,7 +60,9 @@ public class ScanPanel extends JPanel {
 	    	AppData thisAppData = (AppData) i.next();
 	    	thisAppData.calcDraw(g);//not location
 	    	
-	    	if(thisAppData.getDrawX() <= 10)//calc location here
+	    	
+	    	
+	    	if(thisAppData.getDrawX() <= 1)//calc location here
 	    	{
 		    	thisAppData.setDrawX(drawX);
 		    	thisAppData.setDrawY(drawY);
@@ -69,6 +75,24 @@ public class ScanPanel extends JPanel {
 		      	}
 		    	
 	    	}else{//collision moving????
+	    		
+	    		//repel from bounds
+	    		if( thisAppData.getDrawX() < (displayHeight/3) )
+	    		{
+	    			thisAppData.setDrawX(thisAppData.getDrawX()+1);
+	    		}
+	    		if( thisAppData.getDrawX() > (displayHeight/3*2) )
+	    		{
+	    			thisAppData.setDrawX(thisAppData.getDrawX()-1);
+	    		}
+	    		if( thisAppData.getDrawY() < (displayWidth/3) )
+	    		{
+	    			thisAppData.setDrawY(thisAppData.getDrawY()+1);
+	    		}
+	    		if( thisAppData.getDrawY() > (displayWidth/3*2) )
+	    		{
+	    			thisAppData.setDrawY(thisAppData.getDrawY()-1);
+	    		}
 	    		
 	    	}
 	    	

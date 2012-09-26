@@ -66,6 +66,8 @@ public class LinkSearch extends RecursiveAction {
 	            for(int i = 0; i < list.size(); i++)
 	            {
 	        	    System.out.print("L.");
+	        	    //paint much more often than once per page:
+	        	    ACrawler.scanPanel.repaint();
 
 		    		  //if valid
 	                LinkTag currentFoundLink = (LinkTag) list.elementAt(i);

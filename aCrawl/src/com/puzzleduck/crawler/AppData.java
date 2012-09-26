@@ -23,8 +23,8 @@ public class AppData {
 	  private LinkedList<AppData> linksFromApp; 
 	  private double sizeX = 0; 
 	  private double sizeY = 0;
-	  private int drawX = 10; 
-	  private int drawY = 10;
+	  private int drawX = 0; 
+	  private int drawY = 0;
 	  private String printUrl;
 	  
 	  
@@ -41,8 +41,8 @@ public class AppData {
 	    linksFromApp = new LinkedList<AppData>();
 		sizeX = 0; 
 		sizeY = 0;
-		drawX = 10; 
-		drawY = 10;
+		drawX = 0; 
+		drawY = 0;
 	}
 
 	  public AppData(String newName, String newUrl)
@@ -53,8 +53,8 @@ public class AppData {
 	    linksFromApp = new LinkedList<AppData>();
 		sizeX = 0; 
 		sizeY = 0;
-		drawX = 10; 
-		drawY = 10;
+		drawX = 0; 
+		drawY = 0;
 		if(appUrl.length() > 30)
 		{
 			printUrl = "..." + appUrl.substring(appUrl.length()-30, appUrl.length());
