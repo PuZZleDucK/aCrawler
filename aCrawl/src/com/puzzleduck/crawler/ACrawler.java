@@ -163,6 +163,25 @@ public class ACrawler {
 	    stopButton.addActionListener(new ACrawlStopper());//TODO 
 
 		
+	    
+	    
+	    
+	    
+	    
+	    
+	    //start canvas draw routine:
+//	    scanPanel.repaint();//...moving to alt thread...
+	    ForkJoinPool uiPool = new ForkJoinPool(2);
+	    uiPool.invoke( new BackgroundPaint() );
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
 	}
 
 }
