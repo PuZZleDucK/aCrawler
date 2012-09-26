@@ -27,7 +27,7 @@ public class ScanPanel extends JPanel {
 
 	    int displayHeight = g.getClipBounds().height;
 	    int displayWidth = g.getClipBounds().width;
-	    System.out.println("Display: (" + displayHeight +","+ displayWidth +")");
+//	    System.out.println("Display: (" + displayHeight +","+ displayWidth +")");
 	    
 	    //get list of fonts... put in menu later
 	    GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
