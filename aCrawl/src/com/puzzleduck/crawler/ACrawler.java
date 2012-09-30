@@ -82,7 +82,7 @@ public class ACrawler
 	    mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.PAGE_AXIS));
 	    mainWindow.getContentPane().add(mainPanel);
 
-	    JLabel versionLabel = new JLabel("MarketScanner: Mk.2");
+	    JLabel versionLabel = new JLabel("MarketScanner: Mk.3");
 	    mainPanel.add(versionLabel);
 	    mainWindow.setTitle("Scan Window");
 		
