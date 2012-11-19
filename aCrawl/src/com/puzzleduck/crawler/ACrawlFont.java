@@ -17,7 +17,7 @@ public class ACrawlFont implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		ScanPanel.thisFont = new Font ( (String) ACrawler.fontComboBox.getSelectedItem() , 0 , 8);; //new Font ("Liberation Mono", 0 , 8);
+		ScanPanel.thisFont = new Font ( (String) ACrawler.fontComboBox.getSelectedItem() , 0 , (Integer)ACrawler.fontSizeComboBox.getSelectedItem() ); //new Font ("Liberation Mono", 0 , 8);
 		
 	}
 

@@ -35,6 +35,7 @@ public class ACrawler
 
 	protected static JComboBox<String> startingAddressComboBox;
 	protected static JComboBox<String> fontComboBox;
+	protected static JComboBox<Integer> fontSizeComboBox;
 	protected static JFrame mainWindow;
 	protected static ScanPanel scanPanel;
 	
@@ -107,16 +108,28 @@ public class ACrawler
 	    fontComboBox.insertItemAt("flatline",2);
 	    fontComboBox.insertItemAt("Wargames",3);
 	    fontComboBox.insertItemAt("Swift",4);
-	    fontComboBox.insertItemAt("Monospaced.plain",5);
+	    fontComboBox.insertItemAt("Monospaced.bold",5);
 	    fontComboBox.insertItemAt("Marked Fool",6);
 	    fontComboBox.insertItemAt("Liberation Mono",7);
 	    fontComboBox.insertItemAt("Delphine",8);
 	    fontComboBox.insertItemAt("Jokerman",9);
 	    fontComboBox.insertItemAt("DroidMono",10);
 	    fontComboBox.insertItemAt("Droid Mono",11);
-	    fontComboBox.setSelectedIndex(0);
+	    fontComboBox.setSelectedIndex(5);
 	    fontComboBox.addActionListener(new ACrawlFont());
 	    comboPanel.add(fontComboBox);
+	    fontSizeComboBox = new JComboBox<Integer>();
+	    fontSizeComboBox.insertItemAt(new Integer( 6),0);
+	    fontSizeComboBox.insertItemAt(new Integer( 8),1);
+	    fontSizeComboBox.insertItemAt(new Integer(12),2);
+	    fontSizeComboBox.insertItemAt(new Integer(14),3);
+	    fontSizeComboBox.insertItemAt(new Integer(16),4);
+	    fontSizeComboBox.insertItemAt(new Integer(18),5);
+	    fontSizeComboBox.insertItemAt(new Integer(20),6);
+	    fontSizeComboBox.insertItemAt(new Integer(22),7);
+	    fontSizeComboBox.setSelectedIndex(2);
+	    fontSizeComboBox.addActionListener(new ACrawlFont());
+	    comboPanel.add(fontSizeComboBox);
 
 		JButton cdgCrawlButton = new JButton("Config Crawl");
 		JButton cfgDbButton = new JButton("Config DB");

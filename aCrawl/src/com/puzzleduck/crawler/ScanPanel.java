@@ -18,7 +18,7 @@ import javax.swing.JPanel;
  *
  */
 public class ScanPanel extends JPanel {
-	  public static Font thisFont = new Font ("Liberation Mono", 0 , 8);//
+	  public static Font thisFont = new Font( "Monospaced.bold" , 0 , 12 );
 
 	  private Random rng = new Random();
 	  public void paintComponent(Graphics g)
