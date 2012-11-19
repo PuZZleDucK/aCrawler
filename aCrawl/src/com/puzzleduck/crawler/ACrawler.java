@@ -1,6 +1,6 @@
 /**
- * web crawler and search for app info
  * (c) me & GPL3
+ * Web crawler and search for app info, main startup... init and build GUI
  */
 package com.puzzleduck.crawler;
 

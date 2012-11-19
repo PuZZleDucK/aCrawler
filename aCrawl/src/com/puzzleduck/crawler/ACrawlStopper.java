@@ -1,5 +1,6 @@
 /**
  *  (C)me & GPL3
+ *  Just a receiver to call shutdown on the threads
  */
 package com.puzzleduck.crawler;
 

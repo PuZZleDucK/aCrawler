@@ -1,5 +1,6 @@
 /**
  * (C)me & GPL3
+ * data object for storing URL/app data
  */
 package com.puzzleduck.crawler;
 

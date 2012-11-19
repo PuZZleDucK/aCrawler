@@ -1,3 +1,7 @@
+/**
+ * (c) me & GPL3
+ * hmm it's been a while and I'm not sure... this might be just to slow the giu (v0.7something was crazy fast, this could be just wheels spinning... could probably be better done using the executor or something benjamin :\)
+ */
 package com.puzzleduck.crawler;
 
 import java.util.concurrent.RecursiveAction;

@@ -1,5 +1,6 @@
 /**
- * 
+ * (c) me & GPL3
+ * search for links in provided URL
  */
 package com.puzzleduck.crawler;
 
