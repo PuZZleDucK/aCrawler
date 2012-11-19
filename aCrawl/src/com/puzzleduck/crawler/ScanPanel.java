@@ -1,5 +1,6 @@
 /**
- * 
+ * (c) me & GPL3
+ * The GUI panel drawing links... lots of this must go (into other classes)
  */
 package com.puzzleduck.crawler;
 
@@ -13,12 +14,12 @@ import java.util.Random;
 import javax.swing.JPanel;
 
 /**
- * @author bminerds
+ * @author bminerds aka PuZZleDucK
  *
  */
 public class ScanPanel extends JPanel {
-	  private static Font thisFont = new Font ("Liberation Mono", 0 , 8);// or "Jokerman"
-	  // fonts: progenisis flatline Wargames Swift Monospaced.plain "Marked Fool" "Liberation Mono" Delphine 
+	  public static Font thisFont = new Font ("Liberation Mono", 0 , 8);//
+
 	  private Random rng = new Random();
 	  public void paintComponent(Graphics g)
 	  {

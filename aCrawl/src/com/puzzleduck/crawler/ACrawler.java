@@ -32,8 +32,9 @@ public class ACrawler
 {
 	protected final static List<AppData> appLinkedList = Collections.synchronizedList(new LinkedList<AppData>());
 	protected static ForkJoinPool forkPool;
-	
+
 	protected static JComboBox<String> startingAddressComboBox;
+	protected static JComboBox<String> fontComboBox;
 	protected static JFrame mainWindow;
 	protected static ScanPanel scanPanel;
 	
@@ -100,6 +101,22 @@ public class ACrawler
 	    JPanel comboPanel = new JPanel();
 	    comboPanel.add(startingAddressComboBox);
 	    lowerPanel.add(comboPanel);
+	    fontComboBox = new JComboBox<String>();	  // fonts: ""      "" ""   or ""
+	    fontComboBox.insertItemAt("Liberation Mono",0);
+	    fontComboBox.insertItemAt("progenisis",1);
+	    fontComboBox.insertItemAt("flatline",2);
+	    fontComboBox.insertItemAt("Wargames",3);
+	    fontComboBox.insertItemAt("Swift",4);
+	    fontComboBox.insertItemAt("Monospaced.plain",5);
+	    fontComboBox.insertItemAt("Marked Fool",6);
+	    fontComboBox.insertItemAt("Liberation Mono",7);
+	    fontComboBox.insertItemAt("Delphine",8);
+	    fontComboBox.insertItemAt("Jokerman",9);
+	    fontComboBox.insertItemAt("DroidMono",10);
+	    fontComboBox.insertItemAt("Droid Mono",11);
+	    fontComboBox.setSelectedIndex(0);
+	    fontComboBox.addActionListener(new ACrawlFont());
+	    comboPanel.add(fontComboBox);
 
 		JButton cdgCrawlButton = new JButton("Config Crawl");
 		JButton cfgDbButton = new JButton("Config DB");
