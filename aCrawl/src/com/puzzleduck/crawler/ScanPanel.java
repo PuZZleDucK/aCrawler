@@ -39,12 +39,12 @@ public class ScanPanel extends JPanel {
 //	    }
 	    
 	    g.setFont(thisFont);
-	    g.fillRect(0, 0 , g.getClipBounds(getVisibleRect()).width, g.getClipBounds(getVisibleRect()).height);
+	    g.fillRect(0, 0 , g.getClipBounds(getVisibleRect()).width, g.getClipBounds(getVisibleRect()).height);//good... handles font and size perfectly
 	    
-	    Iterator<AppData> i = ACrawler.appLinkedList.iterator();
-	    while( i.hasNext() )
+	    Iterator<AppData> appListIterator = ACrawler.appLinkedList.iterator();
+	    while( appListIterator.hasNext() )
 	    {
-	    	AppData thisAppData = (AppData) i.next();
+	    	AppData thisAppData = (AppData) appListIterator.next();
 	    	thisAppData.calcDraw(g);//not location ... things like box size and text size
 	    	if(thisAppData.getDrawX() <= 1)//calc location here
 	    	{//new location
@@ -59,53 +59,11 @@ public class ScanPanel extends JPanel {
 	    	    {
 	    	    	AppData otherAppData = (AppData) other.next();
 	    	    	//small local effect
-	    	    	float xDelta = Math.abs(thisAppData.getDrawX() - otherAppData.getDrawX());
-	    	    	float yDelta = Math.abs(thisAppData.getDrawY() - otherAppData.getDrawY());
-	    	    	if(   xDelta < 60 ) // 30-delta/30
-	    	    	{
-			    		if( thisAppData.getDrawX() < otherAppData.getDrawX() )
-			    		{
-			    			thisAppData.setDrawX(  thisAppData.getDrawX() - (60-xDelta)/10  )  ; //range up to 2
-			    		}
-			    		if( thisAppData.getDrawX() > otherAppData.getDrawX() )
-			    		{
-			    			thisAppData.setDrawX(thisAppData.getDrawX() + (60-xDelta)/10);
-			    		}
-	    	    	}//repel x
-	    	    	if(  yDelta  < 60 )
-	    	    	{
-			    		if( thisAppData.getDrawY() < otherAppData.getDrawY() )
-			    		{
-			    			thisAppData.setDrawY(thisAppData.getDrawY() - (60-yDelta)/10);
-			    		}
-			    		if( thisAppData.getDrawY() > otherAppData.getDrawY() )
-			    		{
-			    			thisAppData.setDrawY(thisAppData.getDrawY() + (60-yDelta)/10);
-			    		}
-	    	    	}//repel y
+	    	    	AppData.repelObjects(thisAppData, otherAppData);
+	    	    	int displayMargin = 60;
+	    	    	AppData.repelObjectFromBounds(thisAppData, displayWidth, displayHeight, displayMargin);
 	    	    	
-
-		    		//repel from bounds
-		    		if( thisAppData.getDrawX() < 60 )
-		    		{
-		    			float d = 60 - thisAppData.getDrawX();
-		    			thisAppData.setDrawX(thisAppData.getDrawX()+d);//(30-thisAppData.getDrawX()) looked promising
-		    		}
-		    		if( thisAppData.getDrawX() > (displayWidth-60) ) // (5 * (5-1))    (n * (n-1))
-		    		{
-		    			float d = (displayWidth-60) - thisAppData.getDrawX();
-		    			thisAppData.setDrawX(thisAppData.getDrawX()+d);
-		    		}
-		    		if( thisAppData.getDrawY() < 60 )
-		    		{
-		    			float d = 60 - thisAppData.getDrawY();
-		    			thisAppData.setDrawY(thisAppData.getDrawY()+d);
-		    		}
-		    		if( thisAppData.getDrawY() > (displayHeight-60) )
-		    		{
-		    			float d = (displayHeight-60) - thisAppData.getDrawY();
-		    			thisAppData.setDrawY(thisAppData.getDrawY()+d);//getting pushed off the edge due to pressure
-		    		}
+	    	    	
 		    		
 	    	    }//loop other linnks
 	    	}//moving/updating link display

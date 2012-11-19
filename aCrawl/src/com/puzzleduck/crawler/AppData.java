@@ -207,4 +207,64 @@ public class AppData {
 		this.printUrl = printUrl;
 	}
 
+	public static void repelObjects(AppData thisAppData, AppData otherAppData) 
+	{
+	
+    	float xDelta = Math.abs(thisAppData.getDrawX() - otherAppData.getDrawX());
+    	float yDelta = Math.abs(thisAppData.getDrawY() - otherAppData.getDrawY());
+    	if(   xDelta < 60 ) // 30-delta/30
+    	{
+    		if( thisAppData.getDrawX() < otherAppData.getDrawX() )
+    		{
+    			thisAppData.setDrawX(  thisAppData.getDrawX() - (60-xDelta)/10  )  ; //range up to 2
+    		}
+    		if( thisAppData.getDrawX() > otherAppData.getDrawX() )
+    		{
+    			thisAppData.setDrawX(thisAppData.getDrawX() + (60-xDelta)/10);
+    		}
+    	}//repel x
+    	if(  yDelta  < 60 )
+    	{
+    		if( thisAppData.getDrawY() < otherAppData.getDrawY() )
+    		{
+    			thisAppData.setDrawY(thisAppData.getDrawY() - (60-yDelta)/10);
+    		}
+    		if( thisAppData.getDrawY() > otherAppData.getDrawY() )
+    		{
+    			thisAppData.setDrawY(thisAppData.getDrawY() + (60-yDelta)/10);
+    		}
+    	}//repel y
+		
+	}
+
+	public static void repelObjectFromBounds(AppData thisAppData, int displayWidth, int displayHeight, int displayMargin) 
+	{
+
+		//repel from bounds ... top and left buggy.. still works
+		if( thisAppData.getDrawX() < displayMargin )
+		{
+			float d = displayMargin - thisAppData.getDrawX();
+			thisAppData.setDrawX(thisAppData.getDrawX()+d);//(30-thisAppData.getDrawX()) looked promising
+		}
+		if( thisAppData.getDrawX() > (displayWidth - displayMargin) ) // (5 * (5-1))    (n * (n-1))
+		{
+			float d = (displayWidth - displayMargin) - thisAppData.getDrawX();
+			thisAppData.setDrawX(thisAppData.getDrawX()+d);
+		}
+		if( thisAppData.getDrawY() < displayMargin )
+		{
+			float d = displayMargin - thisAppData.getDrawY();
+			thisAppData.setDrawY(thisAppData.getDrawY()+d);
+		}
+		if( thisAppData.getDrawY() > (displayHeight - displayMargin) )
+		{
+			float d = (displayHeight - displayMargin) - thisAppData.getDrawY();
+			thisAppData.setDrawY(thisAppData.getDrawY()+d);//getting pushed off the edge due to pressure
+		}
+		
+		
+		
+		
+	}
+
 }//class
