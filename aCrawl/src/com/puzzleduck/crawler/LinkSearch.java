@@ -53,9 +53,12 @@ public class LinkSearch extends RecursiveAction {
 	        {
 	        	Parser parser = new Parser(urlObject.openConnection());//get links
 	            NodeList list = parser.extractAllNodesThatMatch( new NodeClassFilter(LinkTag.class) );
-
+//	            NodeList listAll = parser.extractAllNodesThatMatch( new NodeClassFilter() );//might have to search everything to get app confirmation?
+//	            System.out.println("Parser link v all: " + list.size() +" vs. "+ listAll.size() +")");
+	            
+	            
 	    		//build new recursive actions
-	            List<RecursiveAction> actions = new ArrayList<RecursiveAction>();
+//	            List<RecursiveAction> actions = new ArrayList<RecursiveAction>();
 
 	            for(int i = 0; i < list.size(); i++)//for each link
 	            {
@@ -69,7 +72,7 @@ public class LinkSearch extends RecursiveAction {
 //	    	        	    System.out.println("Selected:" + (String) ACrawler.startingAddressComboBox.getSelectedItem());
 //	    	        	    System.out.println("App url :" + newAppData.getAppUrl());
 	    	            	//is still in same domain (app store)
-	                		if(newAppData.getAppUrl().startsWith("https://play.google.com/store"))//need to change back later:    (String) ACrawler.startingAddressComboBox.getSelectedItem()
+	                		if(newAppData.getAppUrl().startsWith((String) ACrawler.startingAddressComboBox.getSelectedItem()))//need to change back later:    (String) ACrawler.startingAddressComboBox.getSelectedItem()
 	                		{
 	        	        	    ACrawler.forkPool.submit(new LinkSearch(newAppData.getAppUrl(), urlAsApp));
 	                		}

@@ -27,6 +27,8 @@ public class AppData {
 	  private float drawX = 0; 
 	  private float drawY = 0;
 	  private String printUrl;
+	  private Color displayColor = Color.blue;
+	  private Color BGdisplayColor = Color.darkGray;
 	  
 
 	/**
@@ -59,8 +61,31 @@ public class AppData {
 		}else{
 			printUrl = appUrl;
 		}
+		if( appUrl.contains("apps/details?id=") )//google play app
+		{
+			int packageIndexStart = appUrl.indexOf("apps/details?id=");
+			packageIndexStart += "apps/details?id=".length();
+			int packageIndexEnd = appUrl.indexOf("&", packageIndexStart+1);
+			newName = appUrl.substring( (packageIndexStart) , packageIndexEnd);
+			printUrl = newName;
+			displayColor = Color.black;
+			BGdisplayColor = Color.yellow;
+		}else
+		{
+			printUrl = "";
+		}
+		
+		
 	  }
 	  
+	public Color getDisplayColor() {
+		return displayColor;
+	}
+
+	public void setDisplayColor(Color displayColor) {
+		this.displayColor = displayColor;
+	}
+
 	public String getAppName() 
 	{
 		return appName;
@@ -265,6 +290,14 @@ public class AppData {
 		
 		
 		
+	}
+
+	public Color getBGdisplayColor() {
+		return BGdisplayColor;
+	}
+
+	public void setBGdisplayColor(Color bGdisplayColor) {
+		BGdisplayColor = bGdisplayColor;
 	}
 
 }//class

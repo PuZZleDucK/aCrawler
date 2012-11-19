@@ -24,28 +24,20 @@ public class ScanPanel extends JPanel {
 	  public void paintComponent(Graphics g)
 	  {
 	    super.paintComponent(g);  
-	    g.setColor(Color.white);  
 
 	    int displayHeight = g.getClipBounds().height;
 	    int displayWidth = g.getClipBounds().width;
 //	    System.out.println("Display: (" + displayHeight +","+ displayWidth +")");
 	    
-	    //get list of fonts... put in menu later
-	    GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-	    Font[] allfonts = ge.getAllFonts();
-//	    for(int i = 0; i < allfonts.length ;i++ )
-//	    {
-//	    	System.out.println("Font: " + allfonts[i].getName());
-//	    }
-	    
 	    g.setFont(thisFont);
-	    g.fillRect(0, 0 , g.getClipBounds(getVisibleRect()).width, g.getClipBounds(getVisibleRect()).height);//good... handles font and size perfectly
+	    g.setColor(Color.gray);  
+	    g.fillRect(0, 0 , g.getClipBounds(getVisibleRect()).width, g.getClipBounds(getVisibleRect()).height);//clear bg
 	    
 	    Iterator<AppData> appListIterator = ACrawler.appLinkedList.iterator();
 	    while( appListIterator.hasNext() )
 	    {
 	    	AppData thisAppData = (AppData) appListIterator.next();
-	    	thisAppData.calcDraw(g);//not location ... things like box size and text size
+	    	thisAppData.calcDraw(g);//not location ... things like box size and text size... good... handles font and size perfectly
 	    	if(thisAppData.getDrawX() <= 1)//calc location here
 	    	{//new location
 		    	thisAppData.setDrawX(displayWidth/2 + rng.nextInt(10)-5);//now dumping into the middle... near the middle
@@ -58,18 +50,17 @@ public class ScanPanel extends JPanel {
 	    	    while( other.hasNext() )
 	    	    {
 	    	    	AppData otherAppData = (AppData) other.next();
-	    	    	//small local effect
-	    	    	AppData.repelObjects(thisAppData, otherAppData);
+	    	    	AppData.repelObjects(thisAppData, otherAppData);// move gui objects away from each other
 	    	    	int displayMargin = 60;
-	    	    	AppData.repelObjectFromBounds(thisAppData, displayWidth, displayHeight, displayMargin);
-	    	    	
-	    	    	
+	    	    	AppData.repelObjectFromBounds(thisAppData, displayWidth, displayHeight, displayMargin);// move gui objects away from end of screen... or back on screen as the case may be
 		    		
-	    	    }//loop other linnks
+	    	    }//loop other links
 	    	}//moving/updating link display
-	    	
+
+			g.setColor(thisAppData.getBGdisplayColor());
 	        g.fillRect((int)thisAppData.getDrawX(), (int)thisAppData.getDrawY()-10, (int)thisAppData.getSizeY(), (int)thisAppData.getSizeX());
-			g.setColor(Color.blue);
+//			g.setColor(Color.blue);
+			g.setColor(thisAppData.getDisplayColor());
 	        g.drawString(thisAppData.getPrintUrl(), (int)thisAppData.getDrawX()+5, (int)thisAppData.getDrawY()+5);
 	        
 	        //draw links to and from

@@ -94,7 +94,7 @@ public class ACrawler
 	    mainPanel.add(scanPanel);
 	    
 	    startingAddressComboBox = new JComboBox<String>();
-		startingAddressComboBox.insertItemAt("http://play.google.com/store",0);
+		startingAddressComboBox.insertItemAt("https://play.google.com/store/apps",0);
 	    startingAddressComboBox.insertItemAt("http://www.amazon.com/mobile-apps",1);
 	    startingAddressComboBox.insertItemAt("http://www.appbrain.com/",2);
 	    startingAddressComboBox.setSelectedIndex(0);
